@@ -3,7 +3,11 @@
   <component name="DesignSurface">
     <option name="filePathToZoomLevelMap">
       <map>
+        <entry key="..\:/Users/AAA/AndroidStudioProjects/GithubBrowser/app/src/main/res/drawable/button_background.xml" value="0.2765" />
         <entry key="..\:/Users/AAA/AndroidStudioProjects/GithubBrowser/app/src/main/res/layout/activity_main.xml" value="0.23177083333333334" />
+        <entry key="..\:/Users/AAA/AndroidStudioProjects/GithubBrowser/app/src/main/res/layout/fragment_base.xml" value="0.25885416666666666" />
+        <entry key="..\:/Users/AAA/AndroidStudioProjects/GithubBrowser/app/src/main/res/layout/fragment_branch.xml" value="0.25885416666666666" />
+        <entry key="..\:/Users/AAA/AndroidStudioProjects/GithubBrowser/app/src/main/res/layout/loading_screen.xml" value="0.25677083333333334" />
       </map>
     </option>
   </component>
