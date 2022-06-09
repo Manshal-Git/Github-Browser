@@ -6,7 +6,7 @@ plugins {
 
 android {
     compileSdk 32
-
+    buildToolsVersion '31.0.0'
     defaultConfig {
         applicationId "com.manshal_khatri.githubbrowser"
         minSdk 21
@@ -31,9 +31,9 @@ android {
         jvmTarget = '1.8'
     }
     buildFeatures{
-        viewBinding true
+        viewBinding = true
     }
-    buildToolsVersion '31.0.0'
+
 }
 
 dependencies {

@@ -8,5 +8,7 @@ data class GitRepository(
     @PrimaryKey
     val id : String,
     val owner : String,
-    val name : String
+    val name : String,
+    val description : String,
+    val url : String
 )

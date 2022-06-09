@@ -8,6 +8,7 @@ import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModel
 import com.manshal_khatri.githubbrowser.model.GitRepository
 import com.manshal_khatri.githubbrowser.room.GitRepositoryDB
+import kotlinx.coroutines.coroutineScope
 
 open class HomeViewModel : ViewModel() {
     private lateinit var gitRepoDB : GitRepositoryDB
@@ -18,7 +19,8 @@ open class HomeViewModel : ViewModel() {
     private fun refresh(){
         _repositories.value =_repositories.value
     }
-   private fun addRepo(repo : GitRepository){
+    suspend fun addRepo(repo : GitRepository){
+        gitRepoDB.gitRepoDao().insert(repo)
         _repositories.value?.add(repo)
         refresh()
     }
@@ -27,7 +29,7 @@ open class HomeViewModel : ViewModel() {
         _repositories.value?.addAll(list)
         refresh()
     }
-    private fun removeRepo(repo: GitRepository){
+     fun removeRepo(repo: GitRepository){
         _repositories.value?.remove(repo)
         refresh()
     }

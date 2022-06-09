@@ -18,6 +18,7 @@
             android:exported="false" />
         <activity
             android:name=".AddRepoActivity"
+
             android:exported="false" />
         <activity
             android:name=".DetailActivity"
