@@ -4,7 +4,7 @@ import androidx.room.Entity
 import androidx.room.PrimaryKey
 
 @Entity
-data class Repository(
+data class GitRepository(
     @PrimaryKey
     val id : String,
     val owner : String,
