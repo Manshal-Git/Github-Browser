@@ -31,9 +31,9 @@ class RepositoryAdapter(private val list: List<GitRepository>) : RecyclerView.Ad
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
         val gitRepo = list[position]
         with(holder){
-            title.text = if(gitRepo.name.length < 75) gitRepo.name
-            else gitRepo.name.substring(0,75)+"..."
-            description.text = gitRepo.description
+            title.text = gitRepo.name
+            description.text = if(gitRepo.description.length < 72) gitRepo.description
+            else gitRepo.description.substring(0,72)+"..."
             share.setOnClickListener {
                 val intent = Intent()
                 intent.action = Intent.ACTION_SEND

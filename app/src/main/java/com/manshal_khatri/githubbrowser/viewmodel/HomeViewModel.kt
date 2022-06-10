@@ -21,8 +21,6 @@ open class HomeViewModel : ViewModel() {
     }
     suspend fun addRepo(repo : GitRepository){
         gitRepoDB.gitRepoDao().insert(repo)
-        _repositories.value?.add(repo)
-        refresh()
     }
     private fun addAll(list : List<GitRepository>){
         removeAll()
@@ -31,8 +29,6 @@ open class HomeViewModel : ViewModel() {
     }
     suspend fun removeRepo(repo: GitRepository){
          gitRepoDB.gitRepoDao().delete(repo)
-        _repositories.value?.remove(repo)
-        refresh()
     }
 
      private fun removeAll() = _repositories.value?.clear()
@@ -41,7 +37,7 @@ open class HomeViewModel : ViewModel() {
         gitRepoDB = GitRepositoryDB.getDatabase(context)
     }
 
-    suspend fun getAllPrograms(viewLifecycleOwner: LifecycleOwner){
+     fun getAllPrograms(viewLifecycleOwner: LifecycleOwner){
         gitRepoDB.gitRepoDao().getAllRepositories().observe(viewLifecycleOwner, Observer{
           addAll(it)
         })

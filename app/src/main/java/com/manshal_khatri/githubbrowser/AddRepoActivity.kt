@@ -11,6 +11,7 @@ import com.manshal_khatri.githubbrowser.databinding.ActivityAddRepoBinding
 import com.manshal_khatri.githubbrowser.databinding.ActivityHomeBinding
 import com.manshal_khatri.githubbrowser.model.GitRepository
 import com.manshal_khatri.githubbrowser.util.BaseActivity
+import com.manshal_khatri.githubbrowser.viewmodel.AddRepoViewModel
 import com.manshal_khatri.githubbrowser.viewmodel.HomeViewModel
 import kotlinx.coroutines.GlobalScope
 import kotlinx.coroutines.coroutineScope
@@ -23,6 +24,7 @@ class AddRepoActivity : BaseActivity() {
     lateinit var etRepo : EditText
     lateinit var btnAdd : AppCompatButton
     lateinit var binding: ActivityAddRepoBinding
+    lateinit var addRepoViewModel: AddRepoViewModel
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_add_repo)
@@ -31,15 +33,16 @@ class AddRepoActivity : BaseActivity() {
         etOwner = findViewById(R.id.ETOwner)
         etRepo = findViewById(R.id.ETGitRepo)
         btnAdd = findViewById(R.id.btnAdd)
-
+        addRepoViewModel = ViewModelProvider(this).get(AddRepoViewModel::class.java)
         setupActionBar(toolbar,"Add Repository")
         getHomeViewModel(this)
 
 
         btnAdd.setOnClickListener {
-            lifecycleScope.launch{
-//                viewModel.addRepo()
-            }
+            val owner = etOwner.text.toString()
+            val repo = etRepo.text.toString()
+            addRepoViewModel.fetchGitRepository(this@AddRepoActivity,owner,repo)
+            onBackPressed()
         }
     }
 }

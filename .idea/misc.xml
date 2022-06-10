@@ -4,6 +4,8 @@
     <option name="filePathToZoomLevelMap">
       <map>
         <entry key="..\:/Users/AAA/AndroidStudioProjects/GithubBrowser/app/src/main/res/drawable-anydpi/ic_add.xml" value="0.1" />
+        <entry key="..\:/Users/AAA/AndroidStudioProjects/GithubBrowser/app/src/main/res/drawable-xhdpi/btn_delete_background.xml" value="0.2445" />
+        <entry key="..\:/Users/AAA/AndroidStudioProjects/GithubBrowser/app/src/main/res/drawable-xhdpi/dialog_background.xml" value="0.2445" />
         <entry key="..\:/Users/AAA/AndroidStudioProjects/GithubBrowser/app/src/main/res/drawable/button_background.xml" value="0.2765" />
         <entry key="..\:/Users/AAA/AndroidStudioProjects/GithubBrowser/app/src/main/res/drawable/edittext_background.xml" value="0.2445" />
         <entry key="..\:/Users/AAA/AndroidStudioProjects/GithubBrowser/app/src/main/res/drawable/toolbar_background.xml" value="0.2445" />
@@ -11,6 +13,7 @@
         <entry key="..\:/Users/AAA/AndroidStudioProjects/GithubBrowser/app/src/main/res/layout/activity_detail.xml" value="0.25885416666666666" />
         <entry key="..\:/Users/AAA/AndroidStudioProjects/GithubBrowser/app/src/main/res/layout/activity_home.xml" value="0.25" />
         <entry key="..\:/Users/AAA/AndroidStudioProjects/GithubBrowser/app/src/main/res/layout/activity_main.xml" value="0.23177083333333334" />
+        <entry key="..\:/Users/AAA/AndroidStudioProjects/GithubBrowser/app/src/main/res/layout/alert_dialog.xml" value="0.21248396750748183" />
         <entry key="..\:/Users/AAA/AndroidStudioProjects/GithubBrowser/app/src/main/res/layout/fragment_base.xml" value="0.25885416666666666" />
         <entry key="..\:/Users/AAA/AndroidStudioProjects/GithubBrowser/app/src/main/res/layout/fragment_branch.xml" value="0.25885416666666666" />
         <entry key="..\:/Users/AAA/AndroidStudioProjects/GithubBrowser/app/src/main/res/layout/item_git_repo.xml" value="0.25677083333333334" />

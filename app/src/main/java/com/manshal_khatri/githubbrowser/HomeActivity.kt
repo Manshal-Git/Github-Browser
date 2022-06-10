@@ -68,4 +68,9 @@ class HomeActivity : BaseActivity() {
         }
     }
 
+    override fun onResume() {
+        viewModel.getAllPrograms(this@HomeActivity)
+        super.onResume()
+    }
+
 }
