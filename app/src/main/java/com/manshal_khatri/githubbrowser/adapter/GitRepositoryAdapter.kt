@@ -3,14 +3,13 @@ package com.manshal_khatri.githubbrowser.adapter
 import android.content.Intent
 import android.view.LayoutInflater
 import android.view.ViewGroup
-import androidx.core.content.ContextCompat.startActivity
 import androidx.recyclerview.widget.RecyclerView
-import com.manshal_khatri.githubbrowser.DetailActivity
+import com.manshal_khatri.githubbrowser.activity.DetailActivity
 import com.manshal_khatri.githubbrowser.databinding.ItemGitRepoBinding
 import com.manshal_khatri.githubbrowser.model.GitRepository
 import com.manshal_khatri.githubbrowser.util.Constants
 
-class RepositoryAdapter(private val list: List<GitRepository>) : RecyclerView.Adapter<RepositoryAdapter.ViewHolder>() {
+class GitRepositoryAdapter(private val list: List<GitRepository>) : RecyclerView.Adapter<GitRepositoryAdapter.ViewHolder>() {
     class ViewHolder(binding: ItemGitRepoBinding) : RecyclerView.ViewHolder(binding.root) {
         val title = binding.title
         val description = binding.description
@@ -42,7 +41,7 @@ class RepositoryAdapter(private val list: List<GitRepository>) : RecyclerView.Ad
                 it.context.startActivity(intent)
             }
             item.setOnClickListener {
-                val intent = Intent(it.context,DetailActivity::class.java)
+                val intent = Intent(it.context, DetailActivity::class.java)
                 intent.putExtra(Constants.INTENT_ARGS_GIT_REPO,gitRepo)
                 it.context.startActivity(intent)
             }

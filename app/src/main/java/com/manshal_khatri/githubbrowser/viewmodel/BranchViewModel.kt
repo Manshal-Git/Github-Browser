@@ -11,6 +11,7 @@ import com.android.volley.toolbox.JsonObjectRequest
 import com.android.volley.toolbox.Volley
 import com.manshal_khatri.githubbrowser.model.Branch
 import com.manshal_khatri.githubbrowser.model.GitRepository
+import com.manshal_khatri.githubbrowser.util.BaseActivity
 import com.manshal_khatri.githubbrowser.util.Constants
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers

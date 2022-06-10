@@ -4,11 +4,9 @@ import android.content.Intent
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
-import com.manshal_khatri.githubbrowser.CommitsActivity
+import com.manshal_khatri.githubbrowser.activity.CommitsActivity
 import com.manshal_khatri.githubbrowser.databinding.ItemBranchBinding
-import com.manshal_khatri.githubbrowser.databinding.ItemGitRepoBinding
 import com.manshal_khatri.githubbrowser.model.Branch
-import com.manshal_khatri.githubbrowser.model.GitRepository
 
 class BranchAdapter(private val list: List<Branch>,val owner:String,val repoName:String) : RecyclerView.Adapter<BranchAdapter.ViewHolder>() {
     class ViewHolder(binding: ItemBranchBinding) : RecyclerView.ViewHolder(binding.root) {
@@ -31,7 +29,7 @@ class BranchAdapter(private val list: List<Branch>,val owner:String,val repoName
         with(holder){
             branchName.text = branch.name
             item.setOnClickListener {
-                val intent = Intent(it.context,CommitsActivity::class.java)
+                val intent = Intent(it.context, CommitsActivity::class.java)
                 intent.putExtra("branchName",branch.name)
                 intent.putExtra("owner",owner)
                 intent.putExtra("repoName",repoName)

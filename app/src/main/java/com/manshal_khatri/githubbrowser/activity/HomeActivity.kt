@@ -1,4 +1,4 @@
-package com.manshal_khatri.githubbrowser
+package com.manshal_khatri.githubbrowser.activity
 
 import android.content.Intent
 import android.os.Bundle
@@ -12,7 +12,8 @@ import androidx.lifecycle.Observer
 import androidx.lifecycle.lifecycleScope
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
-import com.manshal_khatri.githubbrowser.adapter.RepositoryAdapter
+import com.manshal_khatri.githubbrowser.R
+import com.manshal_khatri.githubbrowser.adapter.GitRepositoryAdapter
 import com.manshal_khatri.githubbrowser.databinding.ActivityHomeBinding
 import com.manshal_khatri.githubbrowser.util.BaseActivity
 import kotlinx.coroutines.launch
@@ -23,6 +24,7 @@ class HomeActivity : BaseActivity() {
     lateinit var rvGitRepositories : RecyclerView
     lateinit var btnAddRepo : AppCompatButton
     lateinit var binding: ActivityHomeBinding
+    var hide = false
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_home)
@@ -40,14 +42,15 @@ class HomeActivity : BaseActivity() {
         }
 
         viewModel.repositories.observe(this, Observer {
-            if(it.isEmpty()){
+            if(it.isEmpty() && hide){
                 rvGitRepositories.visibility = GONE
                 btnAddRepo.setOnClickListener{
-                    startActivity(Intent(this,AddRepoActivity::class.java))
+                    startActivity(Intent(this, AddRepoActivity::class.java))
                 }
             } else {
+                hide = true
                 rvGitRepositories.visibility = VISIBLE
-                rvGitRepositories.adapter = RepositoryAdapter(it)
+                rvGitRepositories.adapter = GitRepositoryAdapter(it)
             }
         })
 
@@ -61,7 +64,7 @@ class HomeActivity : BaseActivity() {
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
         return when(item.itemId){
             R.id.addRepo -> {
-                startActivity(Intent(this,AddRepoActivity::class.java))
+                startActivity(Intent(this, AddRepoActivity::class.java))
                 true
             }
             else -> super.onContextItemSelected(item)

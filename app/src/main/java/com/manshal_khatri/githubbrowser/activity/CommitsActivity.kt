@@ -1,18 +1,14 @@
-package com.manshal_khatri.githubbrowser
+package com.manshal_khatri.githubbrowser.activity
 
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.MenuItem
-import androidx.core.content.ContentProviderCompat.requireContext
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
-import com.manshal_khatri.githubbrowser.adapter.BranchAdapter
+import com.manshal_khatri.githubbrowser.R
 import com.manshal_khatri.githubbrowser.adapter.CommitAdapter
 import com.manshal_khatri.githubbrowser.util.BaseActivity
-import com.manshal_khatri.githubbrowser.util.Constants
-import com.manshal_khatri.githubbrowser.viewmodel.BranchViewModel
 import com.manshal_khatri.githubbrowser.viewmodel.CommitViewModel
 
 class CommitsActivity : BaseActivity() {

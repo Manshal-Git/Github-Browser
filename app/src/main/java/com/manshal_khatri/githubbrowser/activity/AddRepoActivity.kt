@@ -1,22 +1,14 @@
-package com.manshal_khatri.githubbrowser
+package com.manshal_khatri.githubbrowser.activity
 
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.widget.EditText
 import androidx.appcompat.widget.AppCompatButton
 import androidx.appcompat.widget.Toolbar
 import androidx.lifecycle.ViewModelProvider
-import androidx.lifecycle.lifecycleScope
+import com.manshal_khatri.githubbrowser.R
 import com.manshal_khatri.githubbrowser.databinding.ActivityAddRepoBinding
-import com.manshal_khatri.githubbrowser.databinding.ActivityHomeBinding
-import com.manshal_khatri.githubbrowser.model.GitRepository
 import com.manshal_khatri.githubbrowser.util.BaseActivity
 import com.manshal_khatri.githubbrowser.viewmodel.AddRepoViewModel
-import com.manshal_khatri.githubbrowser.viewmodel.HomeViewModel
-import kotlinx.coroutines.GlobalScope
-import kotlinx.coroutines.coroutineScope
-import kotlinx.coroutines.launch
-import java.lang.Math.random
 
 class AddRepoActivity : BaseActivity() {
     lateinit var toolbar : Toolbar

@@ -5,7 +5,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".AddRepoActivity">
+    tools:context=".activity.AddRepoActivity">
 
     <com.google.android.material.appbar.AppBarLayout
         android:id="@+id/appbar"
@@ -23,14 +23,44 @@
 
     </com.google.android.material.appbar.AppBarLayout>
 
+    <TextView
+        android:id="@+id/tvOwner"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="148dp"
+        android:padding="8dp"
+        android:paddingStart="0dp"
+        android:text="Organization/Owner"
+        android:textColor="@color/design_default_color_on_secondary"
+        android:textSize="20sp"
+        android:textStyle="bold"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="@+id/ETOwner"
+        app:layout_constraintTop_toBottomOf="@id/appbar" />
+
+    <TextView
+        android:id="@+id/tvRepoName"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"
+        android:padding="8dp"
+        android:paddingStart="0dp"
+        android:text="@string/repository_name"
+        android:textColor="@color/design_default_color_on_secondary"
+        android:textSize="20sp"
+        android:textStyle="bold"
+        app:layout_constraintStart_toStartOf="@+id/ETGitRepo"
+        app:layout_constraintTop_toBottomOf="@id/ETOwner" />
+
     <EditText
         android:id="@+id/ETOwner"
         android:layout_width="match_parent"
         android:layout_height="56dp"
         android:layout_marginHorizontal="16dp"
-        android:layout_marginTop="112dp"
+        android:paddingHorizontal="16dp"
         android:background="@drawable/edittext_background"
-        app:layout_constraintTop_toBottomOf="@id/appbar"
+        app:layout_constraintTop_toBottomOf="@+id/tvOwner"
         tools:layout_editor_absoluteX="51dp" />
 
     <EditText
@@ -38,11 +68,11 @@
         android:layout_width="match_parent"
         android:layout_height="56dp"
         android:layout_marginHorizontal="16dp"
-        android:layout_marginTop="44dp"
+        android:paddingHorizontal="16dp"
         android:background="@drawable/edittext_background"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/ETOwner" />
+        app:layout_constraintTop_toBottomOf="@+id/tvRepoName" />
 
     <androidx.appcompat.widget.AppCompatButton
         android:id="@+id/btnAdd"

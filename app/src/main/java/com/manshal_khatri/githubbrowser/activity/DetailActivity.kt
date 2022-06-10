@@ -1,4 +1,4 @@
-package com.manshal_khatri.githubbrowser
+package com.manshal_khatri.githubbrowser.activity
 
 import android.content.Intent
 import android.net.Uri
@@ -16,6 +16,7 @@ import androidx.lifecycle.Observer
 import androidx.lifecycle.lifecycleScope
 import androidx.viewpager.widget.ViewPager
 import com.google.android.material.tabs.TabLayout
+import com.manshal_khatri.githubbrowser.R
 import com.manshal_khatri.githubbrowser.adapter.ViewPagerAdapter
 import com.manshal_khatri.githubbrowser.databinding.ActivityDetailBinding
 import com.manshal_khatri.githubbrowser.model.GitRepository
@@ -70,7 +71,6 @@ class DetailActivity : BaseActivity() {
             R.id.deleteRepo -> {
                 val btnCancel = findViewById<TextView>(R.id.btnCancel)
                 val btnDelete = findViewById<TextView>(R.id.btnDelete)
-                mainLayout.visibility = GONE
                 alertDialog.visibility = VISIBLE
                 btnDelete.setOnClickListener {
                     lifecycleScope.launch{
@@ -81,7 +81,9 @@ class DetailActivity : BaseActivity() {
                 }
                 btnCancel.setOnClickListener {
                     alertDialog.visibility = GONE
-                    mainLayout.visibility = VISIBLE
+                }
+                alertDialog.setOnClickListener {
+                    it.visibility = GONE
                 }
                 true
             }

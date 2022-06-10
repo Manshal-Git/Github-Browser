@@ -36,7 +36,7 @@ class AddRepoViewModel : HomeViewModel() {
                     }
                     Toast.makeText(context, "Added", Toast.LENGTH_SHORT).show()
                 }, Response.ErrorListener {
-                        println("Volley Error : $it")
+                    Toast.makeText(context, "Repository Not Found", Toast.LENGTH_SHORT).show()
                 }){}
         queue.add(reqGitRepo)
     }
