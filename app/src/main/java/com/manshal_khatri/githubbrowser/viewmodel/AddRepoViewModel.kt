@@ -14,7 +14,7 @@ class AddRepoViewModel : ViewModel() {
                 Constants.API_GET_REPO,
                 null,
                 Response.Listener {
-                                  //TODO : parse JSON and add to repo list
+
                 }, Response.ErrorListener {
 
                 }){}

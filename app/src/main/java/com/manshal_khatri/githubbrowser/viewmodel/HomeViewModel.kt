@@ -29,7 +29,8 @@ open class HomeViewModel : ViewModel() {
         _repositories.value?.addAll(list)
         refresh()
     }
-     fun removeRepo(repo: GitRepository){
+    suspend fun removeRepo(repo: GitRepository){
+         gitRepoDB.gitRepoDao().delete(repo)
         _repositories.value?.remove(repo)
         refresh()
     }

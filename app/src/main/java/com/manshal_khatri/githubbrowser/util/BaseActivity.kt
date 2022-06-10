@@ -22,9 +22,11 @@ open class BaseActivity : AppCompatActivity() {
             dialog.hide()
     }
 
-     fun setupActionBar(toolbar : Toolbar, title : String){
+     fun setupActionBar(toolbar : Toolbar, title : String,backButton : Boolean=false){
         setSupportActionBar(toolbar)
         supportActionBar?.title = title
+         supportActionBar?.setHomeButtonEnabled(backButton)
+         supportActionBar?.setDisplayHomeAsUpEnabled(backButton)
     }
 
     fun getHomeViewModel(owner: LifecycleOwner){

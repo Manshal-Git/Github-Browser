@@ -22,7 +22,9 @@
             android:exported="false" />
         <activity
             android:name=".DetailActivity"
-            android:exported="false" />
+            android:exported="false" >
+
+        </activity>
         <activity
             android:name=".HomeActivity"
             android:exported="true"
