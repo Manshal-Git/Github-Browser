@@ -5,12 +5,14 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
+import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.manshal_khatri.githubbrowser.R
 import com.manshal_khatri.githubbrowser.adapter.IssueAdapter
 import com.manshal_khatri.githubbrowser.databinding.FragmentIssueBinding
+import com.manshal_khatri.githubbrowser.issuesCount
 import com.manshal_khatri.githubbrowser.viewmodel.IssueViewModel
 
 private const val owner = "owner"
@@ -41,6 +43,8 @@ class IssueFragment : Fragment() {
        viewModel.fetchIssues(requireContext(),mOwner!!,mRepoName!!)
         viewModel.issues.observe(viewLifecycleOwner, Observer {
             binding.rvIssues.adapter = IssueAdapter(it)
+            issuesCount.value = it.size
+            issuesCount.value = issuesCount.value
         })
         return view
     }

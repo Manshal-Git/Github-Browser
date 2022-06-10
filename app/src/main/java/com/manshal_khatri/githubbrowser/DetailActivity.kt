@@ -11,6 +11,8 @@ import android.widget.TextView
 import android.widget.Toast
 import androidx.constraintlayout.widget.ConstraintLayout
 import androidx.coordinatorlayout.widget.CoordinatorLayout
+import androidx.lifecycle.MutableLiveData
+import androidx.lifecycle.Observer
 import androidx.lifecycle.lifecycleScope
 import androidx.viewpager.widget.ViewPager
 import com.google.android.material.tabs.TabLayout
@@ -21,6 +23,7 @@ import com.manshal_khatri.githubbrowser.util.BaseActivity
 import com.manshal_khatri.githubbrowser.util.Constants
 import kotlinx.coroutines.launch
 
+var issuesCount = MutableLiveData(0)
 class DetailActivity : BaseActivity() {
     lateinit var binding : ActivityDetailBinding
     lateinit var gitRepo : GitRepository
@@ -49,6 +52,12 @@ class DetailActivity : BaseActivity() {
             viewPager.adapter = ViewPagerAdapter(this,supportFragmentManager,gitRepo.owner,gitRepo.name)
             tabLayout.setupWithViewPager(viewPager)
         }
+        val issueTab = tabLayout.getTabAt(1)
+        issuesCount.observe(this, Observer {
+            if (issueTab != null) {
+                issueTab.text = "Issues(${issuesCount.value})"
+            }
+        })
         getHomeViewModel(this)
 
     }

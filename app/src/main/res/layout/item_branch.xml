@@ -6,7 +6,9 @@
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:paddingVertical="8dp"
-    android:layout_margin="8dp">
+    android:layout_margin="8dp"
+    android:background="@drawable/dialog_background"
+    android:backgroundTint="#f5f5f5">
 
     <TextView
         android:id="@+id/tvBranch"
@@ -14,7 +16,9 @@
         android:layout_height="wrap_content"
         android:text="Repository"
         android:textColor="@color/black"
-        android:textSize="24sp"
+        android:textSize="20sp"
+        android:paddingHorizontal="16dp"
+        android:paddingVertical="4dp"
         android:textStyle="bold"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />

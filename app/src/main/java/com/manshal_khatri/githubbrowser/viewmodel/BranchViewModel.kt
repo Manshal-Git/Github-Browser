@@ -33,7 +33,7 @@ class BranchViewModel : ViewModel() {
         val reqBranches = object :
             JsonArrayRequest(
                 Method.GET,
-                Constants.API_GET_BRANCHES+"$owner/$repo/branches",
+                Constants.API_GITHUB+"$owner/$repo/branches",
                 null,
                 Response.Listener {
                     println(it)

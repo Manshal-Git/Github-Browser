@@ -21,7 +21,7 @@ class AddRepoViewModel : HomeViewModel() {
         val reqGitRepo = object :
             JsonObjectRequest(
                 Method.GET,
-                Constants.API_GET_REPO+"$owner/$repo",
+                Constants.API_GITHUB+"$owner/$repo",
                 null,
                 Response.Listener {
                     setUpDataBase(context)

@@ -27,7 +27,7 @@ class IssueViewModel : ViewModel() {
         val reqIssues = object :
             JsonArrayRequest(
                 Method.GET,
-                Constants.API_GET_ISSUES+"$owner/$repo/issues?state=open",
+                Constants.API_GITHUB+"$owner/$repo/issues?state=open",
                 null,
                 Response.Listener {
                     println(it)

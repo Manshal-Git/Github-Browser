@@ -42,7 +42,7 @@ class BranchFragment : Fragment() {
 
         viewModel.fetchBranches(requireContext(), mOwner!!, mRepoName!!)
         viewModel.branches.observe(viewLifecycleOwner, Observer {
-            binding.rvBranches.adapter = BranchAdapter(it)
+            binding.rvBranches.adapter = BranchAdapter(it,mOwner!!, mRepoName!!)
         })
         return view
     }
