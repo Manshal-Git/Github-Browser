@@ -5,8 +5,11 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.recyclerview.widget.LinearLayoutManager
 import com.manshal_khatri.githubbrowser.R
+import com.manshal_khatri.githubbrowser.adapter.BranchAdapter
 import com.manshal_khatri.githubbrowser.databinding.FragmentBranchBinding
+import com.manshal_khatri.githubbrowser.model.Branch
 
 private const val owner = "owner"
 private const val repoName = "repo"
@@ -30,7 +33,7 @@ class BranchFragment : Fragment() {
         // Inflate the layout for this fragment
         val view = inflater.inflate(R.layout.fragment_branch, container, false)
         binding = FragmentBranchBinding.bind(view)
-
+        binding.rvBranches.layoutManager = LinearLayoutManager(activity)
         return view
     }
     companion object {
