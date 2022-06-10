@@ -5,7 +5,7 @@ object Constants {
     const val INTENT_ARGS_GIT_REPO = "gitRepo"
     //API
     const val API_GET_REPO = "https://api.github.com/repos/"
-    const val API_GET_BRANCHES = ""
-    const val API_GET_ISSUES = ""
+    const val API_GET_BRANCHES = "https://api.github.com/repos/"
+    const val API_GET_ISSUES = "https://api.github.com/repos/"
     const val API_GET_COMMITS = ""
 }

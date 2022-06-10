@@ -11,8 +11,8 @@ class ViewPagerAdapter(private val context: Context, fm: FragmentManager, val ow
         FragmentPagerAdapter(fm) {
 
         override fun getItem(position: Int): Fragment {
-            return  if(position==1) IssueFragment()
-            else BranchFragment.newInstance(owner,repoName)
+            return  if(position==0) BranchFragment.newInstance(owner,repoName)
+            else IssueFragment.newInstance(owner,repoName)
         }
 
         override fun getPageTitle(position: Int): CharSequence? {
