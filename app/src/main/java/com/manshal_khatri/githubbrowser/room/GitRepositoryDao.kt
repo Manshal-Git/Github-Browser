@@ -11,10 +11,10 @@ import com.manshal_khatri.githubbrowser.model.GitRepository
 interface GitRepositoryDao {
 
     @Insert
-    suspend fun insert(repo : GitRepository)
+     fun insert(repo : GitRepository)
 
     @Delete
-    suspend fun delete(repo : GitRepository)
+     fun delete(repo : GitRepository)
 
     @Query("select * from GitRepository")
     fun getAllRepositories(): LiveData<List<GitRepository>>

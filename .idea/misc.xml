@@ -17,6 +17,7 @@
         <entry key="..\:/Users/AAA/AndroidStudioProjects/GithubBrowser/app/src/main/res/layout/activity_home.xml" value="0.25" />
         <entry key="..\:/Users/AAA/AndroidStudioProjects/GithubBrowser/app/src/main/res/layout/activity_main.xml" value="0.23177083333333334" />
         <entry key="..\:/Users/AAA/AndroidStudioProjects/GithubBrowser/app/src/main/res/layout/alert_dialog.xml" value="0.21248396750748183" />
+        <entry key="..\:/Users/AAA/AndroidStudioProjects/GithubBrowser/app/src/main/res/layout/commits_widget.xml" value="0.22" />
         <entry key="..\:/Users/AAA/AndroidStudioProjects/GithubBrowser/app/src/main/res/layout/fragment_base.xml" value="0.25885416666666666" />
         <entry key="..\:/Users/AAA/AndroidStudioProjects/GithubBrowser/app/src/main/res/layout/fragment_branch.xml" value="0.25885416666666666" />
         <entry key="..\:/Users/AAA/AndroidStudioProjects/GithubBrowser/app/src/main/res/layout/fragment_issue.xml" value="0.21248396750748183" />
@@ -24,9 +25,11 @@
         <entry key="..\:/Users/AAA/AndroidStudioProjects/GithubBrowser/app/src/main/res/layout/item_commit.xml" value="0.25" />
         <entry key="..\:/Users/AAA/AndroidStudioProjects/GithubBrowser/app/src/main/res/layout/item_git_repo.xml" value="0.5" />
         <entry key="..\:/Users/AAA/AndroidStudioProjects/GithubBrowser/app/src/main/res/layout/item_issue.xml" value="0.21077383497221033" />
+        <entry key="..\:/Users/AAA/AndroidStudioProjects/GithubBrowser/app/src/main/res/layout/item_widget_commit.xml" value="0.21077383497221033" />
         <entry key="..\:/Users/AAA/AndroidStudioProjects/GithubBrowser/app/src/main/res/layout/loading_screen.xml" value="0.25677083333333334" />
         <entry key="..\:/Users/AAA/AndroidStudioProjects/GithubBrowser/app/src/main/res/menu/menu_detail_activity.xml" value="0.21248396750748183" />
         <entry key="..\:/Users/AAA/AndroidStudioProjects/GithubBrowser/app/src/main/res/menu/menu_home_activity.xml" value="0.22" />
+        <entry key="..\:/Users/AAA/AppData/Local/Android/Sdk/platforms/android-32/data/res/drawable/ratingbar_indicator_material.xml" value="0.2715" />
       </map>
     </option>
   </component>

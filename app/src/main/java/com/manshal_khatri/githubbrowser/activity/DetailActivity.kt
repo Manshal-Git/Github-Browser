@@ -22,7 +22,9 @@ import com.manshal_khatri.githubbrowser.databinding.ActivityDetailBinding
 import com.manshal_khatri.githubbrowser.model.GitRepository
 import com.manshal_khatri.githubbrowser.util.BaseActivity
 import com.manshal_khatri.githubbrowser.util.Constants
+import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
+import kotlinx.coroutines.withContext
 
 var issuesCount = MutableLiveData(0)
 class DetailActivity : BaseActivity() {
@@ -74,7 +76,9 @@ class DetailActivity : BaseActivity() {
                 alertDialog.visibility = VISIBLE
                 btnDelete.setOnClickListener {
                     lifecycleScope.launch{
-                        viewModel.removeRepo(gitRepo)
+                        withContext(Dispatchers.IO){
+                            viewModel.removeRepo(gitRepo)
+                        }
                     }
                     Toast.makeText(this, "Deleted", Toast.LENGTH_SHORT).show()
                     finish()
