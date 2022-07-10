@@ -1,4 +1,4 @@
-<RelativeLayout
+<LinearLayout
     android:id="@+id/widgetLayout"
     xmlns:android="http://schemas.android.com/apk/res/android"
     style="@style/Widget.GithubBrowser.AppWidget.Container"
@@ -6,9 +6,6 @@
     android:layout_height="match_parent"
     android:theme="@style/Theme.GithubBrowser.AppWidgetContainer">
 
-    <FrameLayout
-        android:layout_width="match_parent"
-        android:layout_height="match_parent">
         <ListView
             android:id="@+id/list_view"
             android:layout_width="match_parent"
@@ -25,6 +22,5 @@
             android:textStyle="bold"
             android:text="No Commits"
             android:textSize="20sp" />
-    </FrameLayout>
 
-</RelativeLayout>
+</LinearLayout>

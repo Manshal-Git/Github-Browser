@@ -5,7 +5,7 @@ import android.widget.RemoteViewsService
 
 class CommitWidgetService : RemoteViewsService() {
 
-    override fun onGetViewFactory(intent: Intent): RemoteViewsService.RemoteViewsFactory {
+    override fun onGetViewFactory(intent: Intent): RemoteViewsFactory {
         return CommitRemoteViewFactory(this.applicationContext, intent)
     }
 }

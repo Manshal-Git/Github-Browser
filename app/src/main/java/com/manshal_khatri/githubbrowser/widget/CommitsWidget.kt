@@ -61,18 +61,18 @@ internal fun updateAppWidget(
         putExtra(AppWidgetManager.EXTRA_APPWIDGET_ID, appWidgetId)
         data = Uri.parse(toUri(Intent.URI_INTENT_SCHEME))
     }
-    val views = RemoteViews(context.packageName, R.layout.commits_widget).apply{
+    val views = RemoteViews(context.packageName, R.layout.commits_widget)
         // Set up the RemoteViews object to use a RemoteViews adapter.
         // This adapter connects to a RemoteViewsService through the
         // specified intent.
         // This is how you populate the data.
-        setRemoteAdapter(R.id.list_view, intent)
+        views.setRemoteAdapter(R.id.list_view, intent)
 
         // The empty view is displayed when the collection has no items.
         // It should be in the same layout used to instantiate the
         // RemoteViews object.
-        setEmptyView(R.id.list_view, R.id.empty_view)
-    }
+        views.setEmptyView(R.id.list_view, R.id.empty_view)
+
     // Instruct the widget manager to update the widget
     appWidgetManager.updateAppWidget(appWidgetId, views)
 }
