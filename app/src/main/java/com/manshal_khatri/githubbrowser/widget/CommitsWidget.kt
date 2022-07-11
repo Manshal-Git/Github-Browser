@@ -12,6 +12,7 @@ import android.widget.StackView
 import android.widget.TextView
 import com.manshal_khatri.githubbrowser.R
 import com.manshal_khatri.githubbrowser.activity.CommitsActivity
+import com.manshal_khatri.githubbrowser.activity.HomeActivity
 
 /**
  * Implementation of App Widget functionality.
@@ -23,6 +24,8 @@ class CommitsWidget : AppWidgetProvider() {
         appWidgetIds: IntArray
     ) {
         // Just Started
+
+        // setup which data you want to show
         // There may be multiple widgets active, so update all of them
         for (appWidgetId in appWidgetIds) {
             updateAppWidget(context, appWidgetManager, appWidgetId)
@@ -43,13 +46,18 @@ internal fun updateAppWidget(
     appWidgetManager: AppWidgetManager,
     appWidgetId: Int
 ) {
-    val widgetText = context.getString(R.string.appwidget_text)
-    // Construct the RemoteViews object
 
-//    views.setTextViewText(R.id.appwidget_text, widgetText)
-//    val intent = Intent(context,CommitsActivity::class.java)
-//    val pendingIntent = PendingIntent.getActivity(context,0,intent,0)
-//    views.setOnClickPendingIntent(R.id.widgetLayout,pendingIntent)
+    // Construct the RemoteViews object
+    val i = Intent(context, HomeActivity::class.java)
+    val pi = PendingIntent.getActivity(context,0,i,0)
+
+    var  branch : Int? = null
+//        branch = selectedBranchId
+
+    val views = RemoteViews(context.packageName,R.layout.commits_widget)
+    views.setOnClickPendingIntent(R.id.empty_view,pi)
+    // setup which data you want to show -------------------------------------
+
 
     /* pendingIntent.putExtra("branchName",branch.name)
      pendingIntent.putExtra("owner",owner)
@@ -61,7 +69,7 @@ internal fun updateAppWidget(
         putExtra(AppWidgetManager.EXTRA_APPWIDGET_ID, appWidgetId)
         data = Uri.parse(toUri(Intent.URI_INTENT_SCHEME))
     }
-    val views = RemoteViews(context.packageName, R.layout.commits_widget)
+
         // Set up the RemoteViews object to use a RemoteViews adapter.
         // This adapter connects to a RemoteViewsService through the
         // specified intent.

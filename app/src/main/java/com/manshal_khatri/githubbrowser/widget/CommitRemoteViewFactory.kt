@@ -8,15 +8,19 @@ import android.graphics.Bitmap
 import android.widget.RemoteViews
 import android.widget.RemoteViewsService
 import android.widget.Toast
+import androidx.lifecycle.LiveData
+import androidx.lifecycle.MutableLiveData
+import androidx.lifecycle.Observer
 import com.bumptech.glide.Glide
 import com.manshal_khatri.githubbrowser.R
 import com.manshal_khatri.githubbrowser.model.Commit
 import com.manshal_khatri.githubbrowser.util.Constants
+import com.manshal_khatri.githubbrowser.viewmodel.CommitViewModel
 
 class CommitRemoteViewFactory(
     private val context: Context,
     val intent: Intent
-) : RemoteViewsService.RemoteViewsFactory {
+) : RemoteViewsService.RemoteViewsFactory, CommitViewModel() {
 
     private lateinit var widgetItems: List<Commit>
     private var appWidgetId : Int = 999
@@ -25,13 +29,16 @@ class CommitRemoteViewFactory(
         // source. Heavy lifting, for example downloading or creating content
         // etc, should be deferred to onDataSetChanged() or getViewAt(). Taking
         // more than 20 seconds in this call will result in an ANR.
-
+        fetchCommits(context,"manshal-git","pikadex","master")
+        widgetItems = commits.value!!
         appWidgetId = intent.getIntExtra(AppWidgetManager.EXTRA_APPWIDGET_ID,AppWidgetManager.INVALID_APPWIDGET_ID)
     }
 
     override fun onDataSetChanged() {
+        fetchCommits(context,"manshal-git","pikadex","master")
+        widgetItems = commits.value!!
 
-        widgetItems = List(100) { index -> Commit("$index Manshal",Constants.DEF_AVATAR,"Hy","121236") }
+//        widgetItems = List(100) { index -> Commit("$index Manshal",Constants.DEF_AVATAR,"Hy","121236") }
 
     }
 

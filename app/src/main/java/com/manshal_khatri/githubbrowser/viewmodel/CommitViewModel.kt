@@ -11,8 +11,8 @@ import com.manshal_khatri.githubbrowser.model.Commit
 import com.manshal_khatri.githubbrowser.util.Constants
 import java.lang.Exception
 
-class CommitViewModel : ViewModel() {
-    private val _commits = MutableLiveData(mutableListOf<Commit>())
+open class CommitViewModel : ViewModel() {
+    protected val _commits = MutableLiveData(mutableListOf<Commit>())
     val commits : LiveData<MutableList<Commit>>
         get() = _commits
 
