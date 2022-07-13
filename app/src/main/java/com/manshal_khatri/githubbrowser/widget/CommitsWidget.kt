@@ -6,12 +6,9 @@ import android.appwidget.AppWidgetProvider
 import android.content.Context
 import android.content.Intent
 import android.net.Uri
-import android.widget.FrameLayout
 import android.widget.RemoteViews
-import android.widget.StackView
-import android.widget.TextView
+import android.widget.Toast
 import com.manshal_khatri.githubbrowser.R
-import com.manshal_khatri.githubbrowser.activity.CommitsActivity
 import com.manshal_khatri.githubbrowser.activity.HomeActivity
 
 /**
@@ -39,7 +36,16 @@ class CommitsWidget : AppWidgetProvider() {
     override fun onDisabled(context: Context) {
         // Enter relevant functionality for when the last widget is disabled
     }
+    override fun onReceive(context: Context,intent: Intent){
+
+           Toast.makeText(context, "${intent.action}", Toast.LENGTH_SHORT).show()
+           val awm = AppWidgetManager.getInstance(context)
+           val id = intent.getIntExtra(AppWidgetManager.EXTRA_APPWIDGET_ID,AppWidgetManager.INVALID_APPWIDGET_ID)
+           awm.notifyAppWidgetViewDataChanged(id,R.id.list_view)
+
+    }
 }
+
 
 internal fun updateAppWidget(
     context: Context,
@@ -83,4 +89,5 @@ internal fun updateAppWidget(
 
     // Instruct the widget manager to update the widget
     appWidgetManager.updateAppWidget(appWidgetId, views)
+    appWidgetManager.notifyAppWidgetViewDataChanged(appWidgetId,R.id.list_view)
 }

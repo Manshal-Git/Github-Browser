@@ -11,7 +11,6 @@ import android.view.View.VISIBLE
 import android.widget.Toast
 import androidx.appcompat.widget.AppCompatButton
 import androidx.appcompat.widget.Toolbar
-import androidx.core.content.ContextCompat.startActivity
 import androidx.lifecycle.Observer
 import androidx.lifecycle.lifecycleScope
 import androidx.recyclerview.widget.LinearLayoutManager
@@ -51,7 +50,7 @@ class HomeActivity : BaseActivity() {
         setupActionBar(toolbar,"Github Browser")
         rvGitRepositories.layoutManager = LinearLayoutManager(this)
         lifecycleScope.launch{
-            viewModel.getAllPrograms(this@HomeActivity)
+            viewModel.getAllRepositories(this@HomeActivity)
         }
 
         viewModel.repositories.observe(this, Observer {
@@ -137,7 +136,7 @@ class HomeActivity : BaseActivity() {
     }
 
     override fun onResume() {
-        viewModel.getAllPrograms(this@HomeActivity)
+        viewModel.getAllRepositories(this@HomeActivity)
         super.onResume()
     }
 

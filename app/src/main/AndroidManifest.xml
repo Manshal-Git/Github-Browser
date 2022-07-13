@@ -17,7 +17,7 @@
         android:theme="@style/Theme.GithubBrowser"
         tools:targetApi="31">
         <activity
-            android:name=".CommitWidgetConfiguration"
+            android:name=".widget.CommitWidgetConfiguration"
             android:exported="false" />
 
         <service

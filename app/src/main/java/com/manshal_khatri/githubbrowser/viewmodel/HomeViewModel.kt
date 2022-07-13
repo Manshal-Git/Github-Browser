@@ -37,7 +37,7 @@ open class HomeViewModel : ViewModel() {
         gitRepoDB = GitRepositoryDB.getDatabase(context)
     }
 
-     fun getAllPrograms(viewLifecycleOwner: LifecycleOwner){
+     fun getAllRepositories(viewLifecycleOwner: LifecycleOwner){
         gitRepoDB.gitRepoDao().getAllRepositories().observe(viewLifecycleOwner, Observer{
           addAll(it)
         })
