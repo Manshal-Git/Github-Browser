@@ -83,6 +83,8 @@ class CommitWidgetConfiguration : AppCompatActivity() {
         setResult(RESULT_OK,resultValue)
         val dataIntent = Intent(this,CommitWidgetService::class.java).apply {
             putExtra(AppWidgetManager.EXTRA_APPWIDGET_ID,widgetId)
+            putExtra("owner",owner)
+            putExtra("repo",repo)
             data = Uri.parse(toUri(Intent.URI_INTENT_SCHEME))
         }
         views.setRemoteAdapter(R.id.list_view,dataIntent)

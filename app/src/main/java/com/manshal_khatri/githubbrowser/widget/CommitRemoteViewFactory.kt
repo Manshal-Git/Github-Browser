@@ -23,6 +23,9 @@ class CommitRemoteViewFactory(
     private lateinit var widgetItems : MutableList<Commit>
     lateinit var queue : RequestQueue
     lateinit var vm : CommitViewModel
+    var owner = ""
+    var repo = ""
+    var branchName = "master"
 
     val item =  Commit("Annonymos", Constants.DEF_AVATAR, "", "12-25-6")
    /* private  var widgetItems = listOf(Commit("manshal-git","no","mdasfnds","12-2-5"),
@@ -39,15 +42,17 @@ class CommitRemoteViewFactory(
         queue = Volley.newRequestQueue(context)
         widgetItems = mutableListOf()
 //        widgetItems = List(2,{ Commit("Annonymos",Constants.DEF_AVATAR,"","12-25-6") })
-        appWidgetId = intent.getIntExtra(AppWidgetManager.EXTRA_APPWIDGET_ID,AppWidgetManager.INVALID_APPWIDGET_ID)
+
+            appWidgetId = intent.getIntExtra(AppWidgetManager.EXTRA_APPWIDGET_ID,AppWidgetManager.INVALID_APPWIDGET_ID)
+            owner = intent.getStringExtra("owner").toString()
+            repo = intent.getStringExtra("repo").toString()
+//        println("in on create $owner $repo")
     }
 
     override fun onDataSetChanged() {
 
-        val owner = "manshal-git"
-        val repo = "github-browser"
-        val branchName = "master"
 
+//        println("in datasetchanged $owner $repo")
         /*vm.
         fetchCommits(context,"manshal-git","pikadex","master")*/
 
