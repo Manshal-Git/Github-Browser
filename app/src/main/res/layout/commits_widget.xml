@@ -1,13 +1,37 @@
 <LinearLayout
     android:id="@+id/widgetLayout"
     xmlns:android="http://schemas.android.com/apk/res/android"
-
+style="@style/Theme.MaterialComponents.DayNight"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:theme="@style/Theme.GithubBrowser.AppWidgetContainer"
-    >
+    android:orientation="vertical"
 
-        <StackView
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+                <ImageView
+                    android:id="@+id/ivAppIcon"
+                    android:layout_width="50dp"
+                    android:layout_height="50dp"
+                    android:padding="8dp"
+                    android:src="@mipmap/ic_launcher_round"
+                    android:background="@color/teal_700"
+                        />
+                <TextView
+                    android:id="@+id/tvTitle"
+                    android:layout_width="match_parent"
+                    android:layout_height="50dp"
+                    android:background="@drawable/toolbar_background"
+                    android:textColor="@color/white"
+                    android:gravity="center|start"
+                    android:textAllCaps="true"
+                    android:textSize="18sp"
+                    />
+        </LinearLayout>
+        <ListView
             android:id="@+id/list_view"
             android:layout_width="match_parent"
             android:layout_height="match_parent"

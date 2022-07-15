@@ -27,12 +27,8 @@ class CommitRemoteViewFactory(
     var repo = ""
     var branchName = "master"
 
-    val item =  Commit("Annonymos", Constants.DEF_AVATAR, "", "12-25-6")
-   /* private  var widgetItems = listOf(Commit("manshal-git","no","mdasfnds","12-2-5"),
-        Commit("manshal-git","no","mdasfnds","12-2-5"),
-        Commit("manshal-git","no","mdasfnds","12-2-5"),
-        Commit("manshal-git","no","mdasfnds","12-2-5"),
-        Commit("manshal-git","no","mdasfnds","12-2-5"))*/
+//    val item =  Commit("Annonymos", Constants.DEF_AVATAR, "", "12-25-6")
+
     private var appWidgetId : Int = AppWidgetManager.INVALID_APPWIDGET_ID
     override fun onCreate() {
         // In onCreate() you setup any connections / cursors to your data
@@ -91,7 +87,7 @@ class CommitRemoteViewFactory(
         widgetItems.add(commit)
     }
     override fun onDestroy() {
-        widgetItems.clear()
+        queue.cancelAll("Widget Destroyed")
     }
 
     override fun getCount(): Int {
@@ -103,9 +99,11 @@ class CommitRemoteViewFactory(
         // Construct a remote views item based on the widget item XML file,
         // and set the text based on the position.
 
+        var commitedAt = widgetItems[position].date.substringBeforeLast(":")
+        commitedAt = commitedAt.replace("T","  ")
         return RemoteViews(context.packageName, com.manshal_khatri.githubbrowser.R.layout.item_widget_commit).apply {
             setTextViewText(com.manshal_khatri.githubbrowser.R.id.tvCommitter, widgetItems[position].owner)
-            setTextViewText(com.manshal_khatri.githubbrowser.R.id.tvDate, widgetItems[position].date)
+            setTextViewText(com.manshal_khatri.githubbrowser.R.id.tvDate, commitedAt)
             setTextViewText(com.manshal_khatri.githubbrowser.R.id.tvMessage, widgetItems[position].message)
             try {
                 val bitmap: Bitmap = Glide.with(context)

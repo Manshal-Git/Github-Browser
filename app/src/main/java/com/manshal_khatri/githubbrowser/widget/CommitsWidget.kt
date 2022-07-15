@@ -38,7 +38,7 @@ class CommitsWidget : AppWidgetProvider() {
     }
     override fun onReceive(context: Context,intent: Intent){
 
-           Toast.makeText(context, "${intent.action}", Toast.LENGTH_SHORT).show()
+//           Toast.makeText(context, "${intent.action}", Toast.LENGTH_SHORT).show()
            val awm = AppWidgetManager.getInstance(context)
            val id = intent.getIntExtra(AppWidgetManager.EXTRA_APPWIDGET_ID,AppWidgetManager.INVALID_APPWIDGET_ID)
            awm.notifyAppWidgetViewDataChanged(id,R.id.list_view)

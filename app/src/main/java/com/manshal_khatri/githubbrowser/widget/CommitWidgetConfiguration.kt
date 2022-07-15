@@ -3,6 +3,7 @@ package com.manshal_khatri.githubbrowser.widget
 import android.app.PendingIntent
 import android.appwidget.AppWidgetManager
 import android.content.Intent
+import android.graphics.Bitmap
 import android.graphics.Color
 import android.net.Uri
 import androidx.appcompat.app.AppCompatActivity
@@ -15,6 +16,7 @@ import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.get
 import androidx.recyclerview.widget.LinearLayoutManager
+import com.bumptech.glide.Glide
 import com.manshal_khatri.githubbrowser.R
 import com.manshal_khatri.githubbrowser.activity.HomeActivity
 import com.manshal_khatri.githubbrowser.databinding.ActivityCommitWidgetConfigurationBinding
@@ -71,6 +73,8 @@ class CommitWidgetConfiguration : AppCompatActivity() {
 
         val views = RemoteViews(this.packageName,R.layout.commits_widget)
         views.setOnClickPendingIntent(R.id.empty_view,pi)
+        views.setTextViewText(R.id.tvTitle,repo)
+
         // setup which data you want to show
 
 //        awm.updateAppWidget(widgetId,views)   //def place
