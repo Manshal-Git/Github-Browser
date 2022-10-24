@@ -124,6 +124,7 @@ class CommitsWidget : AppWidgetProvider() {
         val views = RemoteViews(context.packageName,R.layout.commits_widget)
         appWidgetManager.notifyAppWidgetViewDataChanged(appWidgetId,R.id.list_view)
 //        awm.notifyAppWidgetViewDataChanged(id,R.id.list_view)
+        views.setOnClickPendingIntent(R.id.ivRefresh,getSelfPendingIntent(context,"SyncWidget",appWidgetId))
         appWidgetManager.updateAppWidget(appWidgetId, views)
     }
 
