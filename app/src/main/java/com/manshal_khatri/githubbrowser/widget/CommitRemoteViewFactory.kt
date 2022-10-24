@@ -65,7 +65,7 @@ class CommitRemoteViewFactory(
                 Constants.API_GITHUB+"$owner/$repo/commits?sha=$branchName",
                 null,
                 Response.Listener {
-//                    widgetItems.clear()
+                    widgetItems.clear()
                     println(it)
                     for(i in 0 until it.length()) {
                         val commitJsonObj = it.getJSONObject(i)
