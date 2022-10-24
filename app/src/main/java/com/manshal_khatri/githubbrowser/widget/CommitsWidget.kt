@@ -116,8 +116,6 @@ class CommitsWidget : AppWidgetProvider() {
     fun refreshByBroadcast(context: Context) {
         val intent = Intent(AppWidgetManager.ACTION_APPWIDGET_UPDATE)
         intent.component = ComponentName(context,CommitsWidget::class.java)
-        intent.putExtra(AppWidgetManager.EXTRA_APPWIDGET_ID,mAppWidgetId)
-        intent.data = Uri.parse(intent.toUri(Intent.URI_INTENT_SCHEME))
         context.sendBroadcast(intent)
     }
     fun refreshWidgetData(appWidgetManager: AppWidgetManager,context: Context,appWidgetId: Int){
