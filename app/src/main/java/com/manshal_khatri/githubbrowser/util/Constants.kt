@@ -5,5 +5,8 @@ object Constants {
     const val INTENT_ARGS_GIT_REPO = "gitRepo"
     //API
     const val API_GITHUB = "https://api.github.com/repos/"
-
+    // SHARED PREFERENCES
+    const val  SP_WIDGET= "sp"
+    const val  SP_WIDGET_DATA_OWNER = "spDataOwner"
+    const val  SP_WIDGET_DATA_REPO = "spDataRepo"
 }

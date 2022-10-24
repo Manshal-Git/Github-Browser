@@ -2,6 +2,7 @@ package com.manshal_khatri.githubbrowser.widget
 
 import android.app.PendingIntent
 import android.appwidget.AppWidgetManager
+import android.content.Context
 import android.content.Intent
 import android.graphics.Bitmap
 import android.graphics.Color
@@ -29,7 +30,7 @@ import java.util.Collections.addAll
 
 class CommitWidgetConfiguration : AppCompatActivity() {
 
-     val sp = "sp"
+
     var widgetId = AppWidgetManager.INVALID_APPWIDGET_ID
     private lateinit var gitRepoDB : GitRepositoryDB
     lateinit var binding: ActivityCommitWidgetConfigurationBinding
@@ -38,11 +39,11 @@ class CommitWidgetConfiguration : AppCompatActivity() {
         binding = ActivityCommitWidgetConfigurationBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
-//        val configIntent = intent
         if(intent.extras!=null){
             widgetId = intent.getIntExtra(AppWidgetManager.EXTRA_APPWIDGET_ID,
                 AppWidgetManager.INVALID_APPWIDGET_ID)
         }
+
         val resultValue = Intent()
         resultValue.putExtra(AppWidgetManager.EXTRA_APPWIDGET_ID,widgetId)
         setResult(RESULT_CANCELED,resultValue)
@@ -62,40 +63,50 @@ class CommitWidgetConfiguration : AppCompatActivity() {
         options.adapter = WidgetRepoChooserAdapter(list,this)
 
     }
+
     fun chooseBranch(owner : String,repo : String){
         val awm = AppWidgetManager.getInstance(this)
         val i = Intent(this, HomeActivity::class.java)
         val pi = PendingIntent.getActivity(this,0,i,0)
 
-      /*  val vm = ViewModelProvider(this)[CommitViewModel::class.java]
-        vm.
-        fetchCommits(this,owner,repo,"master")*/
 
         val views = RemoteViews(this.packageName,R.layout.commits_widget)
         views.setOnClickPendingIntent(R.id.empty_view,pi)
         views.setTextViewText(R.id.tvTitle,repo)
+        views.setOnClickPendingIntent(R.id.ivRefresh,getSelfPendingIntent(this,"SyncWidget"))
+
 
         // setup which data you want to show
-
 //        awm.updateAppWidget(widgetId,views)   //def place
 
-        val prefs = getSharedPreferences(sp, MODE_PRIVATE)
-        prefs.edit().putString("spData",repo).apply()
+        val prefs = getSharedPreferences(Constants.SP_WIDGET, MODE_PRIVATE)
+        prefs.edit().putString(Constants.SP_WIDGET_DATA_REPO,repo).apply()
+        prefs.edit().putString(Constants.SP_WIDGET_DATA_OWNER,owner).apply()
 
         val resultValue = Intent()
         resultValue.putExtra(AppWidgetManager.EXTRA_APPWIDGET_ID,widgetId)
         setResult(RESULT_OK,resultValue)
+
         val dataIntent = Intent(this,CommitWidgetService::class.java).apply {
             putExtra(AppWidgetManager.EXTRA_APPWIDGET_ID,widgetId)
             putExtra("owner",owner)
             putExtra("repo",repo)
             data = Uri.parse(toUri(Intent.URI_INTENT_SCHEME))
         }
+
         views.setRemoteAdapter(R.id.list_view,dataIntent)
         views.setEmptyView(R.id.list_view, R.id.empty_view)
 
         awm.updateAppWidget(widgetId,views)  // new place
-        awm.notifyAppWidgetViewDataChanged(widgetId,R.id.list_view)
+//        awm.notifyAppWidgetViewDataChanged(widgetId,R.id.list_view)
         onBackPressed()
     }
+
+    fun getSelfPendingIntent(context: Context, Action: String): PendingIntent? {
+        val intent = Intent(context,CommitsWidget::class.java).apply {
+            action =  Action
+        }
+        return PendingIntent.getBroadcast(context,0,intent,0)
+    }
+
 }
