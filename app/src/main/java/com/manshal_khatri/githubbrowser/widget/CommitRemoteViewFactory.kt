@@ -93,6 +93,7 @@ class CommitRemoteViewFactory(
 //                        Toast.makeText(context, "Added $i", Toast.LENGTH_SHORT).show()
                         }
 //                        BoradCaster.sendBC(context)
+
                     }
                 }, Response.ErrorListener {
                     println("Volley Error : $it")
