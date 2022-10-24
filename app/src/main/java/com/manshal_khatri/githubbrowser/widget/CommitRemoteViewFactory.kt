@@ -1,5 +1,6 @@
 package com.manshal_khatri.githubbrowser.widget
 
+import android.annotation.SuppressLint
 import android.appwidget.AppWidgetManager
 import android.content.Context
 import android.content.Context.MODE_PRIVATE
@@ -34,6 +35,7 @@ class CommitRemoteViewFactory(
 //    val item =  Commit("Annonymos", Constants.DEF_AVATAR, "", "12-25-6")
     lateinit var sp : SharedPreferences
     private var appWidgetId : Int = AppWidgetManager.INVALID_APPWIDGET_ID
+
     override fun onCreate() {
         // In onCreate() you setup any connections / cursors to your data
         // source. Heavy lifting, for example downloading or creating content
@@ -64,7 +66,7 @@ class CommitRemoteViewFactory(
                 Constants.API_GITHUB+"$owner/$repo/commits?sha=$branchName",
                 null,
                 Response.Listener {
-
+                        widgetItems.clear()
                         println(it)
                         for (i in 0 until it.length()) {
                             val commitJsonObj = it.getJSONObject(i)
@@ -97,7 +99,6 @@ class CommitRemoteViewFactory(
 
     }
     fun addCommit(commit : Commit) {
-        widgetItems.remove(commit)
         widgetItems.add(commit)
     }
     override fun onDestroy() {
