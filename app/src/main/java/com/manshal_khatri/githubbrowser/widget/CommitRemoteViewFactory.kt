@@ -40,10 +40,9 @@ class CommitRemoteViewFactory(
         // etc, should be deferred to onDataSetChanged() or getViewAt(). Taking
         // more than 20 seconds in this call will result in an ANR.
         queue = Volley.newRequestQueue(context)
-        // TODO : Need to be check if it fails after reboot
 
         widgetItems = mutableListOf()
-//        widgetItems = List(2,{ Commit("Annonymos",Constants.DEF_AVATAR,"","12-25-6") })
+
         sp  = context.getSharedPreferences(Constants.SP_WIDGET,MODE_PRIVATE)
         owner = sp.getString(Constants.SP_WIDGET_DATA_OWNER,"manshal_git").toString()
         repo = sp.getString(Constants.SP_WIDGET_DATA_REPO,"codemin").toString()
@@ -89,10 +88,8 @@ class CommitRemoteViewFactory(
                                     )
                                 )
                             }
-//                        refresh()
-//                        Toast.makeText(context, "Added $i", Toast.LENGTH_SHORT).show()
                         }
-//                        BoradCaster.sendBC(context)
+
 
                     }
                 }, Response.ErrorListener {
@@ -116,7 +113,6 @@ class CommitRemoteViewFactory(
     override fun getViewAt(position: Int): RemoteViews {
         // Construct a remote views item based on the widget item XML file,
         // and set the text based on the position.
-//        Toast.makeText(context, "View of $position", Toast.LENGTH_SHORT).show()
         var commitedAt = widgetItems[position].date.substringBeforeLast(":")
         commitedAt = commitedAt.replace("T","  ")
         return RemoteViews(context.packageName, com.manshal_khatri.githubbrowser.R.layout.item_widget_commit).apply {
