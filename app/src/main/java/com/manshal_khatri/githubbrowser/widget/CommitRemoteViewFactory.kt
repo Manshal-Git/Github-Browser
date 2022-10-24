@@ -65,28 +65,35 @@ class CommitRemoteViewFactory(
                 Constants.API_GITHUB+"$owner/$repo/commits?sha=$branchName",
                 null,
                 Response.Listener {
-                    widgetItems.clear()
-                    println(it)
-                    for(i in 0 until it.length()) {
-                        val commitJsonObj = it.getJSONObject(i)
-                        with(commitJsonObj){
-                            addCommit(
-                                Commit(getJSONObject("commit").getJSONObject("committer").getString("name"),
-                                    avatar_url = try{if(this.getJSONObject("committer") !=null){
-                                        getJSONObject("committer").getString("avatar_url")
-                                    }else{
-                                        Constants.DEF_AVATAR
-                                    }}catch (e: Exception){
-                                        Constants.DEF_AVATAR
-                                    },getJSONObject("commit").getString("message"),
-                                    getJSONObject("commit").getJSONObject("committer").getString("date")
+                    if(it.length()!=widgetItems.size) {
+                        widgetItems.clear()
+                        println(it)
+                        for (i in 0 until it.length()) {
+                            val commitJsonObj = it.getJSONObject(i)
+                            with(commitJsonObj) {
+                                addCommit(
+                                    Commit(
+                                        getJSONObject("commit").getJSONObject("committer")
+                                            .getString("name"),
+                                        avatar_url = try {
+                                            if (this.getJSONObject("committer") != null) {
+                                                getJSONObject("committer").getString("avatar_url")
+                                            } else {
+                                                Constants.DEF_AVATAR
+                                            }
+                                        } catch (e: Exception) {
+                                            Constants.DEF_AVATAR
+                                        }, getJSONObject("commit").getString("message"),
+                                        getJSONObject("commit").getJSONObject("committer")
+                                            .getString("date")
+                                    )
                                 )
-                            )
-                        }
+                            }
 //                        refresh()
 //                        Toast.makeText(context, "Added $i", Toast.LENGTH_SHORT).show()
+                        }
+                        BoradCaster.sendBC(context)
                     }
-//                    BoradCaster.sendBC(context)
                 }, Response.ErrorListener {
                     println("Volley Error : $it")
                 }){}

@@ -10,10 +10,9 @@ import kotlinx.coroutines.launch
 object BoradCaster {
     val cw = CommitsWidget()
     fun sendBC(context : Context){
-        /*CoroutineScope(Dispatchers.Default).launch {
-            delay(10000)
-
-        }*/
+        CoroutineScope(Dispatchers.Default).launch {
+            delay(5000)
+        }
         cw.refreshByBroadcast(context )
     }
 }
