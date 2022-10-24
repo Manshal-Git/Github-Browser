@@ -64,7 +64,6 @@ class CommitRemoteViewFactory(
                 Constants.API_GITHUB+"$owner/$repo/commits?sha=$branchName",
                 null,
                 Response.Listener {
-                    if(it.length()!=widgetItems.size) {
                         widgetItems.clear()
                         println(it)
                         for (i in 0 until it.length()) {
@@ -90,8 +89,6 @@ class CommitRemoteViewFactory(
                             }
                         }
 
-
-                    }
                 }, Response.ErrorListener {
                     println("Volley Error : $it")
                 }){}
@@ -113,16 +110,17 @@ class CommitRemoteViewFactory(
     override fun getViewAt(position: Int): RemoteViews {
         // Construct a remote views item based on the widget item XML file,
         // and set the text based on the position.
-        var commitedAt = widgetItems[position].date.substringBeforeLast(":")
+        val wi = widgetItems[position]
+        var commitedAt = wi.date.substringBeforeLast(":")
         commitedAt = commitedAt.replace("T","  ")
         return RemoteViews(context.packageName, com.manshal_khatri.githubbrowser.R.layout.item_widget_commit).apply {
-            setTextViewText(com.manshal_khatri.githubbrowser.R.id.tvCommitter, widgetItems[position].owner)
+            setTextViewText(com.manshal_khatri.githubbrowser.R.id.tvCommitter, wi.owner)
             setTextViewText(com.manshal_khatri.githubbrowser.R.id.tvDate, commitedAt)
-            setTextViewText(com.manshal_khatri.githubbrowser.R.id.tvMessage, widgetItems[position].message)
+            setTextViewText(com.manshal_khatri.githubbrowser.R.id.tvMessage, wi.message)
             try {
                 val bitmap: Bitmap = Glide.with(context)
                     .asBitmap()
-                    .load(widgetItems[position].avatar_url)
+                    .load(wi.avatar_url)
                     .submit(512, 512)
                     .get()
                 setImageViewBitmap(com.manshal_khatri.githubbrowser.R.id.ivAvatar, bitmap)
