@@ -12,7 +12,7 @@ object BoradCaster {
     fun sendBC(context : Context){
         CoroutineScope(Dispatchers.Default).launch {
             delay(5000)
+            cw.refreshByBroadcast(context )
         }
-        cw.refreshByBroadcast(context )
     }
 }
