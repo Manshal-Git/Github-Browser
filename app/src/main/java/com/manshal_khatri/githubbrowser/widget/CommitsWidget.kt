@@ -58,8 +58,7 @@ class CommitsWidget : AppWidgetProvider() {
             val awm = AppWidgetManager.getInstance(context)
             val id = intent.getIntExtra(AppWidgetManager.EXTRA_APPWIDGET_ID,AppWidgetManager.INVALID_APPWIDGET_ID)
 //            awm.notifyAppWidgetViewDataChanged(id,R.id.list_view)
-//            updateAppWidget(context,awm,id)
-            refreshWidgetData(awm,context,id)
+            updateAppWidget(context,awm,id)
         }
     }
 
@@ -117,6 +116,8 @@ class CommitsWidget : AppWidgetProvider() {
     fun refreshByBroadcast(context: Context) {
         val intent = Intent(AppWidgetManager.ACTION_APPWIDGET_UPDATE)
         intent.component = ComponentName(context,CommitsWidget::class.java)
+        intent.putExtra(AppWidgetManager.EXTRA_APPWIDGET_ID,mAppWidgetId)
+        intent.data = Uri.parse(intent.toUri(Intent.URI_INTENT_SCHEME))
         context.sendBroadcast(intent)
     }
     fun refreshWidgetData(appWidgetManager: AppWidgetManager,context: Context,appWidgetId: Int){
