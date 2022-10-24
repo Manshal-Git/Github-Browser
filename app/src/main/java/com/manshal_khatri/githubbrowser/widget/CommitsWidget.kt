@@ -38,6 +38,7 @@ class CommitsWidget : AppWidgetProvider() {
             Toast.makeText(context, "${intent.action}", Toast.LENGTH_SHORT).show()
             val awm = AppWidgetManager.getInstance(context)
             val id = intent.getIntExtra(AppWidgetManager.EXTRA_APPWIDGET_ID,AppWidgetManager.INVALID_APPWIDGET_ID)
+            awm.notifyAppWidgetViewDataChanged(id,R.id.list_view)
             updateAppWidget(context,awm,id)
     }
 
@@ -54,6 +55,7 @@ class CommitsWidget : AppWidgetProvider() {
         val rintent = Intent(AppWidgetManager.ACTION_APPWIDGET_UPDATE)
         rintent.component = ComponentName(context,CommitsWidget::class.java)
         rintent.putExtra(AppWidgetManager.EXTRA_APPWIDGET_ID,appWidgetId)
+        rintent.data = Uri.parse(rintent.toUri(Intent.URI_INTENT_SCHEME))
         val pi = PendingIntent.getBroadcast(context,0,rintent,0)
         views.setOnClickPendingIntent(R.id.ivRefresh,pi)
         // setup which data you want to show -------------------------------------

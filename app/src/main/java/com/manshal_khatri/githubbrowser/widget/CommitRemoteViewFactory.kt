@@ -47,7 +47,7 @@ class CommitRemoteViewFactory(
         owner = sp.getString(Constants.SP_WIDGET_DATA_OWNER,"manshal_git").toString()
         repo = sp.getString(Constants.SP_WIDGET_DATA_REPO,"codemin").toString()
 
-           appWidgetId = intent.getIntExtra(AppWidgetManager.EXTRA_APPWIDGET_ID,appWidgetId)
+//           appWidgetId = intent.getIntExtra(AppWidgetManager.EXTRA_APPWIDGET_ID,appWidgetId)
            if(intent.hasExtra("owner")&&intent.hasExtra("repo")){
                owner = intent.getStringExtra("owner").toString()
                repo = intent.getStringExtra("repo").toString()
@@ -64,27 +64,28 @@ class CommitRemoteViewFactory(
                 Constants.API_GITHUB+"$owner/$repo/commits?sha=$branchName",
                 null,
                 Response.Listener {
-                        widgetItems.clear()
+
                         println(it)
                         for (i in 0 until it.length()) {
                             val commitJsonObj = it.getJSONObject(i)
                             with(commitJsonObj) {
-                                addCommit(
-                                    Commit(
-                                        getJSONObject("commit").getJSONObject("committer")
-                                            .getString("name"),
-                                        avatar_url = try {
-                                            if (this.getJSONObject("committer") != null) {
-                                                getJSONObject("committer").getString("avatar_url")
-                                            } else {
-                                                Constants.DEF_AVATAR
-                                            }
-                                        } catch (e: Exception) {
+                                val commit = Commit(
+                                    getJSONObject("commit").getJSONObject("committer")
+                                        .getString("name"),
+                                    avatar_url = try {
+                                        if (this.getJSONObject("committer") != null) {
+                                            getJSONObject("committer").getString("avatar_url")
+                                        } else {
                                             Constants.DEF_AVATAR
-                                        }, getJSONObject("commit").getString("message"),
-                                        getJSONObject("commit").getJSONObject("committer")
-                                            .getString("date")
-                                    )
+                                        }
+                                    } catch (e: Exception) {
+                                        Constants.DEF_AVATAR
+                                    }, getJSONObject("commit").getString("message"),
+                                    getJSONObject("commit").getJSONObject("committer")
+                                        .getString("date")
+                                )
+                                addCommit(
+                                    commit
                                 )
                             }
                         }
@@ -96,6 +97,7 @@ class CommitRemoteViewFactory(
 
     }
     fun addCommit(commit : Commit) {
+        widgetItems.remove(commit)
         widgetItems.add(commit)
     }
     override fun onDestroy() {
