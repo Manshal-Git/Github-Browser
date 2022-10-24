@@ -58,7 +58,8 @@ class CommitsWidget : AppWidgetProvider() {
             val awm = AppWidgetManager.getInstance(context)
             val id = intent.getIntExtra(AppWidgetManager.EXTRA_APPWIDGET_ID,AppWidgetManager.INVALID_APPWIDGET_ID)
 //            awm.notifyAppWidgetViewDataChanged(id,R.id.list_view)
-            updateAppWidget(context,awm,id)
+//            updateAppWidget(context,awm,id)
+            refreshWidgetData(awm,context,id)
         }
     }
 
