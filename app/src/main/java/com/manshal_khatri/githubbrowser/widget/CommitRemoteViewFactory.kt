@@ -16,6 +16,7 @@ import com.android.volley.toolbox.JsonArrayRequest
 import com.android.volley.toolbox.Volley
 import com.bumptech.glide.Glide
 import com.manshal_khatri.githubbrowser.BoradCaster
+import com.manshal_khatri.githubbrowser.NotificationService
 import com.manshal_khatri.githubbrowser.model.Commit
 import com.manshal_khatri.githubbrowser.util.Constants
 import com.manshal_khatri.githubbrowser.viewmodel.CommitViewModel
@@ -35,6 +36,7 @@ class CommitRemoteViewFactory(
 //    val item =  Commit("Annonymos", Constants.DEF_AVATAR, "", "12-25-6")
     lateinit var sp : SharedPreferences
     private var appWidgetId : Int = AppWidgetManager.INVALID_APPWIDGET_ID
+    val notificationService = NotificationService(context)
 
     override fun onCreate() {
         // In onCreate() you setup any connections / cursors to your data
@@ -42,7 +44,6 @@ class CommitRemoteViewFactory(
         // etc, should be deferred to onDataSetChanged() or getViewAt(). Taking
         // more than 20 seconds in this call will result in an ANR.
         queue = Volley.newRequestQueue(context)
-
         widgetItems = mutableListOf()
 
         sp  = context.getSharedPreferences(Constants.SP_WIDGET,MODE_PRIVATE)
@@ -66,9 +67,12 @@ class CommitRemoteViewFactory(
                 Constants.API_GITHUB+"$owner/$repo/commits?sha=$branchName",
                 null,
                 Response.Listener {
+                    if(it.length()>widgetItems.size) {
+                        val lastCommitIndex = widgetItems.size
                         widgetItems.clear()
                         println(it)
                         for (i in 0 until it.length()) {
+
                             val commitJsonObj = it.getJSONObject(i)
                             with(commitJsonObj) {
                                 val commit = Commit(
@@ -86,12 +90,16 @@ class CommitRemoteViewFactory(
                                     getJSONObject("commit").getJSONObject("committer")
                                         .getString("date")
                                 )
+                                if(i<=it.length()-lastCommitIndex){
+                                    notificationService.showNotification(i,commit.owner,commit.message)
+                                }
                                 addCommit(
                                     commit
                                 )
                             }
                         }
 
+                    }
                 }, Response.ErrorListener {
                     println("Volley Error : $it")
                 }){}

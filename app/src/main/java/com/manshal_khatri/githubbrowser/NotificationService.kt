@@ -13,7 +13,7 @@ class NotificationService(private val context: Context) {
 
     private val notificationManager = context.getSystemService(Context.NOTIFICATION_SERVICE) as NotificationManager
 
-    fun showNotification(owner:String, msg: String){
+    fun showNotification(id: Int,owner:String, msg: String){
 
 //        val channel = NotificationChannel(Constants.NOTIFICATION_WIDGET_UPDATE,
 //            "Widget Update",NotificationManager.IMPORTANCE_HIGH)
@@ -40,6 +40,6 @@ class NotificationService(private val context: Context) {
 
         notification.color = context.resources.getColor(R.color.teal_200)
 //        notificationManager.createNotificationChannel(channel)
-        notificationManager.notify(1,notification.build())
+        notificationManager.notify(id,notification.build())
     }
 }
