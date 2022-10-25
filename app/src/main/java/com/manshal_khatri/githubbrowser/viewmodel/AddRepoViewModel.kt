@@ -7,12 +7,12 @@ import androidx.lifecycle.ViewModel
 import com.android.volley.Response
 import com.android.volley.toolbox.JsonObjectRequest
 import com.android.volley.toolbox.Volley
+import com.manshal_khatri.githubbrowser.NotificationService
 import com.manshal_khatri.githubbrowser.model.GitRepository
 import com.manshal_khatri.githubbrowser.util.Constants
 import kotlinx.coroutines.*
 
 class AddRepoViewModel : HomeViewModel() {
-
 
     fun fetchGitRepository(context: Context, owner: String,repo: String) {
         val queue = Volley.newRequestQueue(context)
@@ -34,6 +34,7 @@ class AddRepoViewModel : HomeViewModel() {
                             addRepo(gitRepo)
                             withContext(Dispatchers.Main){
                                 Toast.makeText(context, "Added", Toast.LENGTH_SHORT).show()
+
                             }
                         } catch (e: Exception) {
                             println(e)
