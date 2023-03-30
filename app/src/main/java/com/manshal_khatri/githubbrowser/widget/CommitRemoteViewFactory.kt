@@ -1,6 +1,5 @@
 package com.manshal_khatri.githubbrowser.widget
 
-import android.annotation.SuppressLint
 import android.appwidget.AppWidgetManager
 import android.content.Context
 import android.content.Context.MODE_PRIVATE
@@ -15,11 +14,12 @@ import com.android.volley.Response
 import com.android.volley.toolbox.JsonArrayRequest
 import com.android.volley.toolbox.Volley
 import com.bumptech.glide.Glide
-import com.manshal_khatri.githubbrowser.BoradCaster
 import com.manshal_khatri.githubbrowser.NotificationService
 import com.manshal_khatri.githubbrowser.model.Commit
 import com.manshal_khatri.githubbrowser.util.Constants
-import com.manshal_khatri.githubbrowser.viewmodel.CommitViewModel
+import java.text.Format
+import java.time.*
+import java.time.format.DateTimeFormatter
 
 
 class CommitRemoteViewFactory(
@@ -122,11 +122,13 @@ class CommitRemoteViewFactory(
         // Construct a remote views item based on the widget item XML file,
         // and set the text based on the position.
         val wi = widgetItems[position]
-        var commitedAt = wi.date.substringBeforeLast(":")
-        commitedAt = commitedAt.replace("T","  ")
+
+        val dateTime = LocalDateTime.ofInstant(Instant.parse(wi.date), ZoneId.systemDefault())
+        val localDateTime = dateTime.format(DateTimeFormatter.ofPattern("dd-MM-yy")) +
+                " at "+ dateTime.format(DateTimeFormatter.ofPattern("hh:mm a"))
         return RemoteViews(context.packageName, com.manshal_khatri.githubbrowser.R.layout.item_widget_commit).apply {
             setTextViewText(com.manshal_khatri.githubbrowser.R.id.tvCommitter, wi.owner)
-            setTextViewText(com.manshal_khatri.githubbrowser.R.id.tvDate, commitedAt)
+            setTextViewText(com.manshal_khatri.githubbrowser.R.id.tvDate, localDateTime.toString())
             setTextViewText(com.manshal_khatri.githubbrowser.R.id.tvMessage, wi.message)
             try {
                 val bitmap: Bitmap = Glide.with(context)
