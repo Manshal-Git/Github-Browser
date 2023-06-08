@@ -1,6 +1,7 @@
 package com.manshal_khatri.githubbrowser.viewmodel
 
 import android.content.Context
+import android.widget.Toast
 import androidx.lifecycle.LifecycleOwner
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
@@ -41,5 +42,17 @@ open class HomeViewModel : ViewModel() {
         gitRepoDB.gitRepoDao().getAllRepositories().observe(viewLifecycleOwner, Observer{
           addAll(it)
         })
+    }
+
+    fun restoreRepositories() {
+        gitRepoDB.gitRepoDao().getAllRepositoriesFirestore {
+            addAll(it)
+        }
+    }
+
+    fun backupRepositories(onComplete : (Boolean) -> Unit) {
+        _repositories.value?.let {
+            gitRepoDB.gitRepoDao().insertFirestore(it,onComplete)
+        }
     }
 }

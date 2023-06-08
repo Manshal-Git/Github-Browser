@@ -24,6 +24,7 @@ import com.manshal_khatri.githubbrowser.databinding.ActivityHomeBinding
 import com.manshal_khatri.githubbrowser.model.GitRepository
 import com.manshal_khatri.githubbrowser.util.BaseActivity
 import com.manshal_khatri.githubbrowser.util.Constants
+import kotlinx.android.synthetic.main.activity_home.fabAddRepo
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.Dispatchers.Main
@@ -68,6 +69,9 @@ class HomeActivity : BaseActivity() {
         val data : Uri? = intent?.data
         if (data!=null) {
             addExternalRepo(data)
+        }
+        fabAddRepo.setOnClickListener {
+            startActivity(Intent(this, AddRepoActivity::class.java))
         }
     }
 
@@ -122,17 +126,33 @@ class HomeActivity : BaseActivity() {
     }
 
     override fun onCreateOptionsMenu(menu: Menu?): Boolean {
-        menuInflater.inflate(R.menu.menu_home_activity, menu)
+        menuInflater.inflate(R.menu.server_menu, menu)
         return true
     }
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
         return when(item.itemId){
-            R.id.addRepo -> {
-                startActivity(Intent(this, AddRepoActivity::class.java))
+            R.id.menu_backup -> {
+                backupRepositories()
+                true
+            }
+            R.id.menu_restore -> {
+                restoreRepositories()
                 true
             }
             else -> super.onContextItemSelected(item)
         }
+    }
+
+    private fun backupRepositories() {
+        viewModel.backupRepositories(){
+            Toast.makeText(this, "Backup ${
+                if(it) "Complete" else "Failed"
+            }", Toast.LENGTH_SHORT).show()
+        }
+    }
+
+    private fun restoreRepositories() {
+        viewModel.restoreRepositories()
     }
 
     override fun onResume() {

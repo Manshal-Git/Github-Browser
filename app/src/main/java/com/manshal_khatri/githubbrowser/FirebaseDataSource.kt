@@ -1,16 +1,35 @@
 package com.manshal_khatri.githubbrowser
 import com.google.firebase.firestore.FirebaseFirestore
+import com.google.firebase.firestore.SetOptions
 import com.manshal_khatri.githubbrowser.model.GitRepository
 
-class FirebaseDataSource {
+class FirebaseDataSource (val userName : String){
 
     private val db: FirebaseFirestore by lazy {
         FirebaseFirestore.getInstance()
     }
 
-    fun insert(repo: GitRepository) {
-        db.collection("repositories")
-            .add(repo.toMap())
+    fun insert(repo: List<GitRepository>, onComplete : (Boolean) -> Unit) {
+
+
+        db.collection("users")
+            .document(userName)
+            .collection("repositories")
+            .apply {
+                var x = 0
+                for (gitRepository in repo) {
+                    document(gitRepository.name!!).set(gitRepository, SetOptions.merge())
+                        .addOnSuccessListener {
+                            println(x)
+                            x++
+                            if(x == repo.size)
+                                onComplete(true)
+                        }.addOnFailureListener {
+                            onComplete(false)
+                        }
+                }
+            }
+
     }
 
     fun delete(repo: GitRepository) {
@@ -22,7 +41,10 @@ class FirebaseDataSource {
     }
 
     fun getAllRepositories(callback: (List<GitRepository>) -> Unit) {
-        db.collection("repositories")
+
+        db.collection("users")
+            .document(userName)
+            .collection("repositories")
             .get()
             .addOnSuccessListener { result ->
                 val repositories = mutableListOf<GitRepository>()

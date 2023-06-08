@@ -9,11 +9,11 @@ import java.io.Serializable
 @Entity
 data class GitRepository(
     @PrimaryKey
-    val id : String,
-    val owner : String,
-    val name : String,
-    val description : String,
-    val url : String
+    var id : String = "",
+    var owner : String = "",
+    var name : String = "",
+    var description : String = "",
+    var url : String = ""
 ):Serializable {
     @Exclude
     fun toMap(): Map<String, Any?> {

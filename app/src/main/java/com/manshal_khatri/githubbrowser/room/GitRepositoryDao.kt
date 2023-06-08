@@ -21,16 +21,16 @@ interface GitRepositoryDao {
     fun getAllRepositories(): LiveData<List<GitRepository>>
 
     // New methods for Firestore
-    fun insertFirestore(repo: GitRepository) {
-        FirebaseDataSource().insert(repo)
+    fun insertFirestore(repo: List<GitRepository> , onComplete : (Boolean) -> Unit) {
+        FirebaseDataSource("manshal-git").insert(repo,onComplete)
     }
 
     fun deleteFirestore(repo: GitRepository) {
-        FirebaseDataSource().delete(repo)
+        FirebaseDataSource("manshal-git").delete(repo)
     }
 
     fun getAllRepositoriesFirestore(callback: (List<GitRepository>) -> Unit) {
-        FirebaseDataSource().getAllRepositories(callback)
+        FirebaseDataSource("manshal-git").getAllRepositories(callback)
     }
 
 }
