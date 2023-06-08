@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "973740249031",
+    "project_id": "githubrepos-1f1c0",
+    "storage_bucket": "githubrepos-1f1c0.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:973740249031:android:95dd7ebc03708fa45ed3e2",
+        "android_client_info": {
+          "package_name": "com.manshal_khatri.githubbrowser"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "973740249031-r64k05b0s7l98ej0ll27177nqgf21tus.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAF2-AOYDoM0f5ykCUACeO-Y_SRbEUMetI"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "973740249031-r64k05b0s7l98ej0ll27177nqgf21tus.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

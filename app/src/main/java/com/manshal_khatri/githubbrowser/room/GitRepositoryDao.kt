@@ -5,6 +5,7 @@ import androidx.room.Dao
 import androidx.room.Delete
 import androidx.room.Insert
 import androidx.room.Query
+import com.manshal_khatri.githubbrowser.FirebaseDataSource
 import com.manshal_khatri.githubbrowser.model.GitRepository
 
 @Dao
@@ -18,4 +19,18 @@ interface GitRepositoryDao {
 
     @Query("select * from GitRepository")
     fun getAllRepositories(): LiveData<List<GitRepository>>
+
+    // New methods for Firestore
+    fun insertFirestore(repo: GitRepository) {
+        FirebaseDataSource().insert(repo)
+    }
+
+    fun deleteFirestore(repo: GitRepository) {
+        FirebaseDataSource().delete(repo)
+    }
+
+    fun getAllRepositoriesFirestore(callback: (List<GitRepository>) -> Unit) {
+        FirebaseDataSource().getAllRepositories(callback)
+    }
+
 }
