@@ -1,6 +1,7 @@
 package com.manshal_khatri.githubbrowser
 
 import android.content.Context
+import android.widget.Toast
 import androidx.work.Worker
 import androidx.work.WorkerParameters
 import com.android.volley.Response
@@ -38,14 +39,16 @@ class SyncWorker(val context: Context, workerParams: WorkerParameters) :
                 Constants.API_GITHUB + "$owner/$repo/commits?sha=master",
                 null,
                 Response.Listener {
+                    Toast.makeText(context, "oldsize $oldSize", Toast.LENGTH_SHORT).show()
                     if (oldSize == null) oldSize = it.length()
 
                     if (it.length() > oldSize!!) {
 
                         println(it)
                         for (i in 0 until it.length()) {
+
                             if (i < oldSize!!) continue
-                            else println("skipped $i")
+                            else Toast.makeText(context, "$i", Toast.LENGTH_SHORT).show()
 
                             val commitJsonObj = it.getJSONObject(i)
                             with(commitJsonObj) {
@@ -75,6 +78,7 @@ class SyncWorker(val context: Context, workerParams: WorkerParameters) :
                     }
                 }, Response.ErrorListener {
                     println("Volley Error : $it")
+                    Toast.makeText(context, "$it", Toast.LENGTH_SHORT).show()
                 }) {}
 
         Volley.newRequestQueue(context).add(reqCommits)
